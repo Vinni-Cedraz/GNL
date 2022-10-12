@@ -1,5 +1,5 @@
 # GNL
-Get Next Line is the second C project in the École 42 curriculum. It can read files and get a single line on each call of the ``get_next_line()``  function. The program reads from multiple files without losing track of what was already read, so it each call starts from the next line.
+Get Next Line is the second C project in the École 42 curriculum. It can read files and get a single line on each call of the ``get_next_line()`` function. The program reads from multiple files without losing track of what was already read. So each call starts from the next line.
 
 # Use
 To use and test it, you just have to clone the repository and then compile get_next_line.c together with get_next_line_utils.c and main.c,
