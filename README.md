@@ -3,11 +3,10 @@ Get Next Line is the second C project in the École 42 curriculum. It can read f
 
 # Use
 To use and test it, you just have to clone the repository and then compile get_next_line.c together with get_next_line_utils.c and main.c,
-and then execute the binary giving as many file as you can as arguments, like so:
+and then execute the binary giving as many file as you can as arguments, like so: 
+### ./a.out banner.txt
 
-## ./a.out banner.txt
-
-#Example
+# Example
 Here is a fun, althought not practical, example of the GNL being used. In this case it is simply passing line by line from the banner.txt file
 to the int main function where the program prints them, line by line, on the terminal window:
 
@@ -19,4 +18,4 @@ Those text files with ascii characters forming cool images are called ascii art 
 
 They can be automatically generated on this website: https://www.ascii-art-generator.org/
 
-There are practical uses for GNL and I'll be updating this readme with more information.
+## There are practical uses for GNL and I'll be updating this readme with more information.
