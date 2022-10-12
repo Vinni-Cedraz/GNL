@@ -8,7 +8,7 @@ and then execute the binary giving as many files as you want as arguments, like 
 
 # Example
 Here is a fun, althought not practical, example of the GNL being used. In this case it is simply passing line by line from the banner.txt file
-to the int main function where the program prints them, line by line, on the terminal window:
+to the int main function where the program prints them, line by line, on the terminal standard output:
 
 ![WhatsApp Image 2022-10-11 at 19 40 08](https://user-images.githubusercontent.com/92558763/195225628-7b664682-20e8-4a04-811c-d55c62655a4e.jpeg)
 
