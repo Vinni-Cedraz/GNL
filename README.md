@@ -3,7 +3,7 @@ Get Next Line is the second C project in the École 42 curriculum. It can read f
 
 # Use
 To use and test it, you just have to clone the repository and then compile get_next_line.c together with get_next_line_utils.c and main.c,
-and then execute the binary giving as many file as you can as arguments, like so: 
+and then execute the binary giving as many files as you want as arguments, like so: 
 ### ./a.out banner.txt
 
 # Example
