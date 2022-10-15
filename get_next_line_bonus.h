@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 19:06:38 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/14 22:09:48 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/14 22:30:22 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ typedef struct s_trings
 {
 	char	*read;
 	char	*wth_all;
-	char	*befr_brk;
+	char	*bfr_brk;
 }			t_str;
 
 void		*ft_memchr(const void *s, int c, size_t n);
