@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:35:26 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/14 17:29:56 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/10 23:17:02 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,37 @@ size_t	ft_strlen(const char *str)
 	return (i);
 }
 
-typedef unsigned char	t_uc;
-
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void	*ft_calloc(size_t nmemb, size_t size)
 {
-	size_t	i;
+	void	*ptr;
 
-	i = -1;
-	while (++i < n)
-		*(((t_uc *)dst) + i) = *(((t_uc *)src) + i);
-	return (dst);
+	ptr = malloc(nmemb * size);
+	while (ptr && nmemb--)
+		((t_byte *)ptr)[nmemb] = 0;
+	return (ptr);
+}
+
+char	*ft_substr(char const *s, unsigned int start, size_t len)
+{
+	unsigned int	i;
+	char			*sb;
+
+	if (s)
+	{
+		if (ft_strlen(s) < len)
+			len = ft_strlen(s);
+		sb = malloc((len + 1) * sizeof(*s));
+		if (sb)
+		{
+			i = 0;
+			if (start <= ft_strlen(s))
+				while (s[start] && i < len)
+					sb[i++] = s[start++];
+			sb[i] = '\0';
+			return (sb);
+		}
+	}
+	return (NULL);
 }
 
 char	*ft_strjoin(char const *s1, char const *s2)
@@ -53,8 +74,10 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	while (s2 && s2[i])
 		result[resultlen++] = s2[i++];
 	result[resultlen] = '\0';
-	free((char *)s1);
-	free((char *)s2);
+	if (s1)
+		free((char *)s1);
+	if (s2)
+		free((char *)s2);
 	return (result);
 }
 
