@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:46:55 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/14 22:08:26 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/14 22:21:57 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,6 @@ int	main(int argc, char **argv)
 			write(1, nextline, ft_strlen(nextline));
 			free(nextline);
 		}
-		write(1, nextline, ft_strlen(nextline));
-		write(1, nextline, ft_strlen(nextline));
-		write(1, nextline, ft_strlen(nextline));
-		write(1, nextline, ft_strlen(nextline));
-		write(1, nextline, ft_strlen(nextline));
-		write(1, nextline, ft_strlen(nextline));
 		close(fd[j]);
 		j++;
 	}
