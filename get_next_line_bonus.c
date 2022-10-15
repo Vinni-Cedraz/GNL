@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:49:56 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/14 22:31:06 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/15 09:32:36 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,26 +67,26 @@ char	*reading_function(int fd)
 // big_len already has the +1 for the \0
 char	*linebreaker(char *wth_all, size_t big_len, size_t aft_or_not)
 {
-	char	*lnbrk;
 	char	*aftbrk;
 	char	*bfr_brk;
 	int		aftbrk_len;
+	char	*brkaddress;
 
 	if (aft_or_not == 1)
 	{
-		lnbrk = ft_memchr(wth_all, '\n', big_len);
-		aftbrk_len = (wth_all + big_len) - (lnbrk + 1);
-		if (!lnbrk || lnbrk == wth_all + big_len)
+		brkaddress = ft_memchr(wth_all, '\n', big_len);
+		aftbrk_len = (wth_all + big_len) - (brkaddress + 1);
+		if (!brkaddress || brkaddress == wth_all + big_len)
 			return (NULL);
 		aftbrk = malloc((aftbrk_len + 1) * sizeof(char));
-		ft_memcpy(aftbrk, lnbrk + 1, aftbrk_len);
+		ft_memcpy(aftbrk, brkaddress + 1, aftbrk_len);
 		return (aftbrk);
 	}
-	lnbrk = ft_memchr(wth_all, '\n', big_len);
-	if (!lnbrk || lnbrk == wth_all + big_len)
+	brkaddress = ft_memchr(wth_all, '\n', big_len);
+	if (!brkaddress || brkaddress == wth_all + big_len)
 		return ((char *)wth_all);
-	bfr_brk = malloc((lnbrk - wth_all + 2) * sizeof(char));
-	ft_memcpy(bfr_brk, wth_all, lnbrk - wth_all + 2);
-	bfr_brk[lnbrk - wth_all + 1] = '\0';
+	bfr_brk = malloc((brkaddress - wth_all + 2) * sizeof(char));
+	ft_memcpy(bfr_brk, wth_all, brkaddress - wth_all + 2);
+	bfr_brk[brkaddress - wth_all + 1] = '\0';
 	return (bfr_brk);
 }
