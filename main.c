@@ -6,11 +6,26 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:46:55 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/14 22:21:57 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/16 19:13:29 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+
+// this is an auxiliary function to free iteratively each of the characteres
+// in the string passed as an argument
+
+void 	ft_free(char *str)
+{
+		int i;
+
+		i = 0;
+		while (str[i])
+		{
+				free(&str[i]);
+				i++;
+		}
+}
 
 int	main(int argc, char **argv)
 {
@@ -30,7 +45,7 @@ int	main(int argc, char **argv)
 		while ((nextline = get_next_line(fd[j])))
 		{
 			write(1, nextline, ft_strlen(nextline));
-			free(nextline);
+			ft_free(nextline);
 		}
 		close(fd[j]);
 		j++;

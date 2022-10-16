@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:35:26 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/14 22:34:28 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/15 10:07:13 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 typedef unsigned char	t_uc;
 
-void	*ft_memcpy(void *dst, const void *src, size_t n)
+void *ft_memcpy(void *dst, const void *src, size_t n)
 {
 	size_t	i;
 

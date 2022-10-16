@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:49:56 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/15 09:32:36 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/16 19:06:44 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,8 @@ char	*get_next_line(int fd)
 	size_t		len;
 	static char	*aftbrk[1024];
 
+	if (BUFFER_SIZE == 1)
+		return (read_one(fd));
 	if (read(fd, NULL, 0) < 0 || fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	line.bfr_brk = NULL;
@@ -43,11 +45,6 @@ char	*reading_function(int fd)
 
 	line.read = malloc(BUFFER_SIZE + 1 * sizeof(char));
 	bytes_read = read(fd, line.read, BUFFER_SIZE);
-	if (BUFFER_SIZE == 1)
-	{
-		*(line.read + bytes_read) = '\0';
-		return (line.read);
-	}
 	line.bfr_brk = malloc(sizeof(char));
 	*line.bfr_brk = '\0';
 	while (bytes_read != 0)
@@ -67,26 +64,49 @@ char	*reading_function(int fd)
 // big_len already has the +1 for the \0
 char	*linebreaker(char *wth_all, size_t big_len, size_t aft_or_not)
 {
+	char	*lnbrk;
 	char	*aftbrk;
 	char	*bfr_brk;
 	int		aftbrk_len;
-	char	*brkaddress;
 
 	if (aft_or_not == 1)
 	{
-		brkaddress = ft_memchr(wth_all, '\n', big_len);
-		aftbrk_len = (wth_all + big_len) - (brkaddress + 1);
-		if (!brkaddress || brkaddress == wth_all + big_len)
+		lnbrk = ft_memchr(wth_all, '\n', big_len);
+		aftbrk_len = (wth_all + big_len) - (lnbrk + 1);
+		if (!lnbrk || lnbrk == wth_all + big_len)
 			return (NULL);
 		aftbrk = malloc((aftbrk_len + 1) * sizeof(char));
-		ft_memcpy(aftbrk, brkaddress + 1, aftbrk_len);
+		ft_memcpy(aftbrk, lnbrk + 1, aftbrk_len);
 		return (aftbrk);
 	}
-	brkaddress = ft_memchr(wth_all, '\n', big_len);
-	if (!brkaddress || brkaddress == wth_all + big_len)
+	lnbrk = ft_memchr(wth_all, '\n', big_len);
+	if (!lnbrk || lnbrk == wth_all + big_len)
 		return ((char *)wth_all);
-	bfr_brk = malloc((brkaddress - wth_all + 2) * sizeof(char));
-	ft_memcpy(bfr_brk, wth_all, brkaddress - wth_all + 2);
-	bfr_brk[brkaddress - wth_all + 1] = '\0';
+	bfr_brk = malloc((lnbrk - wth_all + 2) * sizeof(char));
+	ft_memcpy(bfr_brk, wth_all, lnbrk - wth_all + 2);
+	bfr_brk[lnbrk - wth_all + 1] = '\0';
 	return (bfr_brk);
+}
+
+char *read_one(int fd)
+{
+	int i;
+	int bt_rd; 
+	t_str	line;
+
+	i = 0;
+	bt_rd = 1;
+	line.read = malloc(sizeof(char));
+	*line.read = '\0';
+	while (bt_rd)
+	{
+		bt_rd = read (fd, line.read + i, 1);
+			if (line.read[i] == '\n' || bt_rd == 0)
+				break;
+		line.read[++i] = *(char *)malloc(sizeof(char));
+	}
+	if (!bt_rd && *line.read == '\0')
+		return (NULL);
+	line.read[i]  = '\0';
+	return (line.read);
 }

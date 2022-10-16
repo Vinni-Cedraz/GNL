@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 19:06:38 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/14 22:29:41 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/15 10:07:04 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ char		*ft_strjoin(char const *s1, char const *s2);
 char		*get_next_line(int fd);
 char		*linebreaker(char *, size_t big_len, size_t aft_or_not);
 char		*reading_function(int fd);
-char		*ft_memcpy(void *dest, const void *src, size_t n);
+void *ft_memcpy(void *dest, const void *src, size_t n);
 size_t		ft_strlen(const char *str);
 
 #endif
