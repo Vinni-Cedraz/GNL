@@ -6,14 +6,12 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:49:56 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/17 23:43:38 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/18 13:58:01 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
 #include <string.h>
-
-static void free_lst(t_list *lst);
 
 char	*get_next_line(int fd)
 {
@@ -96,40 +94,25 @@ char	*read_one(int fd)
 	int		i;
 	t_str	line;
 	int		bt_rd;
-	t_list	*lst;
 
 	i = 0;
-	line.read = malloc(sizeof(char));
-	lst = lstnew(line.read);
+	line.read = malloc(__INT_MAX__);
 	*line.read = '\0';
 	bt_rd = read(fd, line.read, 1);
 	while (bt_rd)
 	{
-		if (line.read[i] == '\n')
+		if (line.read[i] == '\n' || i == __INT_MAX__ - 1)
 		{
 			line.read[i + 1] = '\0';
-      line.res = strdup(line.read);
-      return (free_lst(lst), line.res);
+			line.res = strdup(line.read);
+			return (free(line.read), line.res);
 		}
-		line.read[++i] = *(char *)malloc(sizeof(char));
-    lst_addback(&lst, lstnew(line.read + i));
-		bt_rd = read(fd, line.read + i, 1);
+		if (i < __INT_MAX__ - 1)
+			bt_rd = read(fd, line.read + ++i, 1);
 	}
 	if (!bt_rd && !i)
-		return (free_lst(lst), NULL);
+		return (free(line.read), NULL);
 	line.read[i] = '\0';
-  line.res = strdup(line.read);
-  return (free_lst(lst), line.res);
-}
-
-static void free_lst(t_list *lst)
-{
-  t_list	*tmp;
-
-  while (lst)
-  {
-    tmp = lst;
-    lst = lst->next;
-    free(tmp);
-  }
+	line.res = strdup(line.read);
+	return (free(line.read), line.res);
 }
