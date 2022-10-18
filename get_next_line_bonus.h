@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 19:06:38 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/17 23:14:32 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:12:28 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,28 +25,19 @@
 // next call of the function. It can receive as index the fd number being read.
 typedef struct s_trings
 {
-	char		*read;
-	char		**arr;
-	char		*wth_all;
-	char		*bfr_brk;
-	char		*res;
-}				t_str;
+	char	*read;
+	char	*wth_all;
+	char	*bfr_brk;
+	char	*res;
+}			t_str;
 
-typedef struct node
-{
-	char		*address;
-	struct node	*next;
-}				t_list;
-
-void			*ft_free(char *str, int n);
-void			*ft_memchr(const void *s, int c, size_t n);
-void			*ft_memcpy(void *dst, const void *src, size_t n);
-char			*ft_strjoin(char const *s1, char const *s2);
-char			*get_next_line(int fd);
-char			*linebreaker(char *big_line, size_t big_len, size_t aft_or_not);
-char			*reading_function(int fd);
-char			*read_one(int fd);
-void			lst_addback(t_list **lst, t_list *str);
-size_t			ft_strlen(const char *str);
-t_list			*lstnew(void *address);
+char		*ft_strdup(const char *s1);
+void		*ft_memchr(const void *s, int c, size_t n);
+void		*ft_memcpy(void *dst, const void *src, size_t n);
+char		*ft_strjoin(char const *s1, char const *s2);
+char		*get_next_line(int fd);
+char		*linebreaker(char *big_line, size_t big_len, size_t aft_or_not);
+char		*reading_function(int fd);
+char		*read_one(int fd);
+size_t		ft_strlen(const char *str);
 #endif

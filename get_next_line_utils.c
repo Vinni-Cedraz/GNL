@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:35:26 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/15 10:07:13 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:12:35 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,27 @@
 #include <unistd.h>
 
 typedef unsigned char	t_uc;
+
+char *ft_strdup(const char *s1)
+{
+	char	*ptr;
+	int		i;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	ptr = malloc(i + 1);
+	if (!ptr)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		ptr[i] = s1[i];
+		i++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
 
 void *ft_memcpy(void *dst, const void *src, size_t n)
 {

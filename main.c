@@ -6,26 +6,17 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/11 21:46:55 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/16 19:13:29 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/17 13:16:06 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
+#include <time.h>
 
 // this is an auxiliary function to free iteratively each of the characteres
 // in the string passed as an argument
 
-void 	ft_free(char *str)
-{
-		int i;
-
-		i = 0;
-		while (str[i])
-		{
-				free(&str[i]);
-				i++;
-		}
-}
+// i'll be using gettime to measure the speed of the program below:
 
 int	main(int argc, char **argv)
 {
@@ -45,7 +36,7 @@ int	main(int argc, char **argv)
 		while ((nextline = get_next_line(fd[j])))
 		{
 			write(1, nextline, ft_strlen(nextline));
-			ft_free(nextline);
+			free(nextline);
 		}
 		close(fd[j]);
 		j++;
