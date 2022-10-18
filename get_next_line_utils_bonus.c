@@ -6,15 +6,36 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 19:35:26 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/17 23:08:59 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:18:21 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "get_next_line_bonus.h"
 #include <stdlib.h>
 #include <unistd.h>
-#include "get_next_line_bonus.h"
 
 typedef unsigned char	t_uc;
+
+char	*ft_strdup(const char *s1)
+{
+	char	*str;
+	size_t	i;
+
+	i = 0;
+	while (s1[i])
+		i++;
+	str = malloc((i + 1) * sizeof(char));
+	if (str == NULL)
+		return (NULL);
+	i = 0;
+	while (s1[i])
+	{
+		str[i] = s1[i];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
 
 size_t	ft_strlen(const char *str)
 {
@@ -62,31 +83,4 @@ void	*ft_memchr(const void *s, int c, size_t n)
 		if (*(t_uc *)s++ == (t_uc)c)
 			return ((t_uc *)s - 1);
 	return (NULL);
-}
-
-void	lst_addback(t_list **lst, t_list *str)
-{
-	t_list	*temp;
-
-	if (!lst || !str)
-		return ;
-	if (!*lst)
-	{
-		*lst = str;
-		return ;
-	}
-	temp = *lst;
-	while (temp->next)
-		temp = temp->next;
-	temp->next = str;
-}
-
-t_list	*lstnew(void *content)
-{
-	t_list	*list;
-
-	list = malloc(sizeof(*list));
-	list->address = content;
-	list->next = NULL;
-	return (list);
 }

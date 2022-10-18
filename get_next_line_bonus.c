@@ -6,12 +6,11 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:49:56 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/18 13:58:01 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:19:05 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line_bonus.h"
-#include <string.h>
 
 char	*get_next_line(int fd)
 {
@@ -104,7 +103,7 @@ char	*read_one(int fd)
 		if (line.read[i] == '\n' || i == __INT_MAX__ - 1)
 		{
 			line.read[i + 1] = '\0';
-			line.res = strdup(line.read);
+			line.res = ft_strdup(line.read);
 			return (free(line.read), line.res);
 		}
 		if (i < __INT_MAX__ - 1)
@@ -113,6 +112,6 @@ char	*read_one(int fd)
 	if (!bt_rd && !i)
 		return (free(line.read), NULL);
 	line.read[i] = '\0';
-	line.res = strdup(line.read);
+	line.res = ft_strdup(line.read);
 	return (free(line.read), line.res);
 }
