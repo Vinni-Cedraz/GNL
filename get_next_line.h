@@ -6,13 +6,13 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 19:06:38 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/15 10:07:04 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:33:50 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 # define GET_NEXT_LINE_H
 
@@ -26,6 +26,7 @@
 typedef struct s_trings
 {
 	char	*read;
+	char	*res;
 	char	*wth_all;
 	char	*bfr_brk;
 }			t_str;
@@ -33,9 +34,10 @@ typedef struct s_trings
 void		*ft_memchr(const void *s, int c, size_t n);
 char		*ft_strjoin(char const *s1, char const *s2);
 char		*get_next_line(int fd);
-char		*linebreaker(char *, size_t big_len, size_t aft_or_not);
+char		*linebreaker(char *wth_all, size_t big_len, size_t aft_or_not);
 char		*reading_function(int fd);
-void *ft_memcpy(void *dest, const void *src, size_t n);
 size_t		ft_strlen(const char *str);
-
+char		*read_one(int fd);
+char		*ft_strdup(const char *s1);
+void		*ft_memcpy(void *dst, const void *src, size_t n);
 #endif

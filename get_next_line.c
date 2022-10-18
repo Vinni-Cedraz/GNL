@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 22:26:52 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/16 20:40:55 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/18 16:25:32 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,19 +16,21 @@ char	*get_next_line(int fd)
 {
 	t_str		line;
 	size_t		len;
-	static char	*aftbrk[1024];
+	static char	*aftbrk;
 
 	if (read(fd, NULL, 0) < 0 || fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
+	if (BUFFER_SIZE == 1)
+		return (read_one(fd));
 	line.bfr_brk = NULL;
-	if (!aftbrk[fd])
+	if (!aftbrk)
 		line.wth_all = reading_function(fd);
 	else
-		line.wth_all = ft_strjoin(aftbrk[fd], reading_function(fd));
+		line.wth_all = ft_strjoin(aftbrk, reading_function(fd));
 	len = ft_strlen(line.wth_all) + 1;
 	if (len - 1)
 	{
-		aftbrk[fd] = linebreaker(line.wth_all, len, 1);
+		aftbrk = linebreaker(line.wth_all, len, 1);
 		line.bfr_brk = linebreaker(line.wth_all, len, 0);
 	}
 	if (!(line.wth_all == line.bfr_brk))
@@ -89,4 +91,32 @@ char	*linebreaker(char *wth_all, size_t big_len, size_t aft_or_not)
 	ft_memcpy(befr_brk, wth_all, lnbrk - wth_all + 2);
 	befr_brk[lnbrk - wth_all + 1] = '\0';
 	return (befr_brk);
+}
+
+char	*read_one(int fd)
+{
+	int		i;
+	t_str	line;
+	int		bt_rd;
+
+	i = 0;
+	line.read = malloc(__INT_MAX__);
+	*line.read = '\0';
+	bt_rd = read(fd, line.read, 1);
+	while (bt_rd)
+	{
+		if (line.read[i] == '\n' || i == __INT_MAX__ - 1)
+		{
+			line.read[i + 1] = '\0';
+			line.res = ft_strdup(line.read);
+			return (free(line.read), line.res);
+		}
+		if (i < __INT_MAX__ - 1)
+			bt_rd = read(fd, line.read + ++i, 1);
+	}
+	if (!bt_rd && !i)
+		return (free(line.read), NULL);
+	line.read[i] = '\0';
+	line.res = ft_strdup(line.read);
+	return (free(line.read), line.res);
 }
