@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 22:26:52 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/18 16:25:32 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/21 22:32:11 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,11 +45,6 @@ char	*reading_function(int fd)
 
 	line.read = malloc(BUFFER_SIZE + 1 * sizeof(char));
 	bytes_read = read(fd, line.read, BUFFER_SIZE);
-	if (BUFFER_SIZE == 1)
-	{
-		*(line.read + bytes_read) = '\0';
-		return (line.read);
-	}
 	line.bfr_brk = malloc(sizeof(char));
 	*line.bfr_brk = '\0';
 	while (bytes_read != 0)
