@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:49:56 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/10/23 14:46:46 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/10/23 18:00:18 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_next_line(int fd)
 	if (read(fd, NULL, 0) < 0 || fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	if (BUFFER_SIZE == 1)
-		return (read_one(*aftbrk[fd]));
+		return (read_one(fd));
 	line.bfr_brk = NULL;
 	if (!aftbrk[fd])
 		line.wth_all = reading_function(fd);
