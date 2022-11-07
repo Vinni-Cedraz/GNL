@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*   get_next_line.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:49:56 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/02 12:19:08 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/07 00:40:20 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line_bonus.h"
+#include "get_next_line.h"
 
 char	*get_next_line(int fd)
 {
@@ -59,27 +59,27 @@ char	*reading_function(int fd)
 	return (line.bfr_brk);
 }
 
-// big_len already has the +1 for the \0
-char	*linebreaker(char *wth_all, size_t big_len, size_t aft_or_not)
+// wth_all_len already has the +1 for the \0
+char	*linebreaker(char *wth_all, size_t wth_all_len, size_t aft_or_not)
 {
 	t_ools	line;
 
+	line.lnbrk = ft_memchr(wth_all, '\n', wth_all_len);
 	if (aft_or_not == 1)
 	{
-		line.lnbrk = ft_memchr(wth_all, '\n', big_len);
-		line.aftbrk_len = (wth_all + big_len) - (line.lnbrk + 1);
-		if (!line.lnbrk || line.lnbrk == wth_all + big_len)
+		line.aftbrk_len = (wth_all + wth_all_len) - (line.lnbrk + 1);
+		if (!line.lnbrk || line.lnbrk == wth_all + wth_all_len)
 			return (NULL);
 		line.aftbrk = malloc((line.aftbrk_len + 1) * sizeof(char));
 		ft_memcpy(line.aftbrk, line.lnbrk + 1, line.aftbrk_len);
 		return (line.aftbrk);
 	}
-	line.lnbrk = ft_memchr(wth_all, '\n', big_len);
-	if (!line.lnbrk || line.lnbrk == wth_all + big_len)
+	line.bfrbrk_len = line.lnbrk - wth_all + 2;
+	if (!line.lnbrk || line.lnbrk == wth_all + wth_all_len)
 		return ((char *)wth_all);
-	line.bfr_brk = malloc((line.lnbrk - wth_all + 2) * sizeof(char));
-	ft_memcpy(line.bfr_brk, wth_all, line.lnbrk - wth_all + 2);
-	line.bfr_brk[line.lnbrk - wth_all + 1] = '\0';
+	line.bfr_brk = malloc((line.bfrbrk_len) * sizeof(char));
+	ft_memcpy(line.bfr_brk, wth_all, line.bfrbrk_len);
+	*(line.bfr_brk + line.bfrbrk_len - 1) = '\0';
 	return (line.bfr_brk);
 }
 

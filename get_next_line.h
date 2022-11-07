@@ -6,13 +6,13 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 19:06:38 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/02 12:25:57 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/07 00:31:29 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 1
+#  define BUFFER_SIZE 42
 # endif
 # define GET_NEXT_LINE_H
 
@@ -33,6 +33,7 @@ typedef struct s_tools
 	char	*res;
 	size_t	len;
 	int		aftbrk_len;
+	int		bfrbrk_len;
 }			t_ools;
 
 char		*ft_strdup(const char *s1);
