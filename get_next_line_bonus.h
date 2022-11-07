@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 19:06:38 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/02 12:22:54 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/07 00:41:20 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_tools
 	char	*res;
 	size_t	len;
 	int		aftbrk_len;
+  int   bfrbrk_len;
 }			t_ools;
 
 char		*ft_strdup(const char *s1);
