@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 19:06:38 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/07 00:41:20 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:26:47 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 // The *after_n[] attribute of the t_str is used to store the remaining string
 // from the previous line read in a static variable, so it can be used in the
 // next call of the function. It can receive as index the fd number being read.
-typedef struct s_tools
+typedef struct s
 {
 	char	*lnbrk;
 	char	*read;
@@ -31,7 +31,9 @@ typedef struct s_tools
 	char	*bfr_brk;
 	char	*aftbrk;
 	char	*res;
+	size_t	max;
 	size_t	len;
+	size_t	i;
 	int		aftbrk_len;
   int   bfrbrk_len;
 }			t_ools;
