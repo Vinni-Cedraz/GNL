@@ -6,13 +6,13 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 19:06:38 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/07 00:31:29 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:30:03 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_H
 # ifndef BUFFER_SIZE
-#  define BUFFER_SIZE 42
+#  define BUFFER_SIZE 1
 # endif
 # define GET_NEXT_LINE_H
 
@@ -32,6 +32,8 @@ typedef struct s_tools
 	char	*aftbrk;
 	char	*res;
 	size_t	len;
+	size_t	max;
+	size_t	i;
 	int		aftbrk_len;
 	int		bfrbrk_len;
 }			t_ools;

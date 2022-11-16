@@ -6,7 +6,7 @@
 /*   By: vcedraz- <vcedraz-@student.42sp.org.br>    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 18:49:56 by vcedraz-          #+#    #+#             */
-/*   Updated: 2022/11/07 00:42:12 by vcedraz-         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:27:35 by vcedraz-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,27 +85,27 @@ char	*linebreaker(char *wth_all, size_t wth_all_len, size_t aft_or_not)
 
 char	*read_one(int fd)
 {
-	int		i;
 	t_ools	line;
 
-	i = 0;
-	line.read = malloc(__INT_MAX__);
+	line.i = 0;
+	line.max = (size_t)__INT_MAX__ * 3;
+	line.read = malloc(line.max);
 	*line.read = '\0';
 	line.len = read(fd, line.read, 1);
 	while (line.len)
 	{
-		if (line.read[i] == '\n' || i == __INT_MAX__ - 1)
+		if (line.read[line.i] == '\n' || line.i == line.max - 1)
 		{
-			line.read[i + 1] = '\0';
+			line.read[line.i + 1] = '\0';
 			line.res = ft_strdup(line.read);
 			return (free(line.read), line.res);
 		}
-		if (i < __INT_MAX__ - 1)
-			line.len = read(fd, line.read + ++i, 1);
+		if (line.i < line.max - 1)
+			line.len = read(fd, &line.read[line.i++], 1);
 	}
-	if (!line.len && !i)
+	if (!line.len && !line.i)
 		return (free(line.read), NULL);
-	line.read[i] = '\0';
+	line.read[line.i] = '\0';
 	line.res = ft_strdup(line.read);
 	return (free(line.read), line.res);
 }
